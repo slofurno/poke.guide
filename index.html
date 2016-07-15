@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body,html {
+    background-color: skyblue;
+    height: 100%;
+  }
+  html {
+      box-sizing: border-box;
+  }
+  *, *:before, *:after {
+      box-sizing: inherit;
+  }
+  #root {
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+
+  <div id="root"></div>
+  <script>
+//https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+//https://developers.google.com/maps/documentation/javascript/events
+  function initMap() {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const center = {lat: position.coords.latitude, lng: position.coords.longitude}
+      console.log(center)
+      const map = new google.maps.Map(document.getElementById('root'), {
+        zoom: 12,
+        center,
+      })
+
+      map.addListener('bounds_changed', function() {
+        console.log(map.getBounds())
+      })
+    })
+  }
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUDha6ZFHPibhYm0UKADkuA0d6VgGWSqk&callback=initMap">
+    </script>
+</body>
+</html>
