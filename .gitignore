@@ -1,0 +1,16 @@
+*
+!*.*
+!*/
+![mM]akefile
+!Dockerfile
+
+*.exe
+*.swp
+*.swo
+
+*~
+*.stackdump
+*.o
+*.so
+
+/node_modules

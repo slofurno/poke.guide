@@ -1,0 +1,22 @@
+{
+  "name": "poke.guide",
+  "version": "0.3.1",
+  "description": "",
+  "main": "poke.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "gitlander:slofurno/poke.guide"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "node-uuid": "^1.4.7",
+    "pg": "^6.0.2"
+  }
+}
