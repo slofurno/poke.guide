@@ -12,9 +12,14 @@ function initMap() {
 
     function createMark({x, y}) {
       let position = {lat: y, lng: x}
+      let r = Math.random() * 151 | 0
       return new google.maps.Marker({
         position,
         map: map,
+        icon: {
+          scaledSize: new google.maps.Size(40, 40),
+          url: `/images/${pn[r]}.png`,
+        },
       })
     }
 
