@@ -26,11 +26,33 @@ const modalStyle = {
   background: 'rgba(0,0,0,0.3)',
 }
 
-const Modal = ({ children }) => (
-  <div style={ modalStyle } onClick={() => history.push('/')}>
-    { children }
-  </div>
-)
+const modalContent = {
+  background: 'white',
+  color: 'black',
+  margin: '140px 16px 0',
+  height: '100%',
+  padding: 10,
+}
+
+const Modal = React.createClass({
+  overlayClick({target}) {
+    for(let node = target; node; node = node.parentNode) {
+      if (node === this.refs.content) return
+    }
+
+    history.push('/')
+  },
+
+  render() {
+    return (
+      <div style={ modalStyle } onClick={ this.overlayClick }>
+        <div ref="content" style={ modalContent }>
+          { this.props.children }
+        </div>
+      </div>
+    )
+  },
+})
 
 export default class App extends Component {
   render() {
