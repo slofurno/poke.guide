@@ -11,17 +11,48 @@
   html {
       box-sizing: border-box;
   }
+  body {
+    margin: 0;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 1.2em;
+    padding: 0 0.8em;
+  }
+
   *, *:before, *:after {
       box-sizing: inherit;
   }
-  #root {
-    height: 100%;
+  #map-root {
+    margin-top: 80px;
+    height: 80vh;
   }
+
+  /* Rules for sizing the icon. */
+  .material-icons.md-18 { font-size: 18px; }
+  .material-icons.md-24 { font-size: 24px; }
+  .material-icons.md-36 { font-size: 36px; }
+  .material-icons.md-48 { font-size: 48px; }
+
+  /* Rules for using icons as black on a light background. */
+  .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+  .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+  /* Rules for using icons as white on a dark background. */
+  .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+  .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 </style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
 
   <div id="root"></div>
+  <div id="map-root"></div>
   <script src="/bundle.js"> </script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUDha6ZFHPibhYm0UKADkuA0d6VgGWSqk&callback=initMap">

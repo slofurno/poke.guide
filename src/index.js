@@ -1,5 +1,8 @@
+import React, { Component, PropTypes } from 'react'
+import { render } from 'react-dom'
 import throttle from 'lodash/throttle'
 
+import App from './containers/app'
 import { pokemon, pokeimgs } from './poke'
 const client = PokeClient()
 const _pokemarks = {}
@@ -25,7 +28,7 @@ function initMap() {
   navigator.geolocation.getCurrentPosition(function(position) {
     const center = {lat: position.coords.latitude, lng: position.coords.longitude}
     console.log(center)
-    const map = new google.maps.Map(document.getElementById('root'), {
+    const map = new google.maps.Map(document.getElementById('map-root'), {
       zoom: 12,
       center,
       styles,
@@ -100,3 +103,5 @@ function PokeClient() {
     postMark,
   }
 }
+
+render(<App/>, document.getElementById('root'))

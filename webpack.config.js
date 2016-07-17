@@ -14,5 +14,8 @@ module.exports = {
       loaders: ['babel-loader'],
       include: path.join(__dirname, 'src')
     }]
+  },
+  resolve: {
+    root: path.join(__dirname, 'src')
   }
 };
