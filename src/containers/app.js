@@ -2,16 +2,14 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Router, Route, IndexRoute, createMemoryHistory } from 'react-router'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import { createStore, applyMiddleware } from 'redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import history from 'history'
-import rootReducer from 'reducers'
 import Overlay from 'containers/overlay'
+import NewPokeMark from 'containers/newpokemark'
 import Login from 'containers/login'
+import store from 'store'
 
-
-const store = createStore(rootReducer, applyMiddleware(thunk))
 store.subscribe(() => console.log(store.getState()))
 
 const NoOp = () => null
@@ -29,9 +27,10 @@ const modalStyle = {
 const modalContent = {
   background: 'white',
   color: 'black',
-  margin: '140px 16px 0',
+  margin: '110px auto 0',
   height: '100%',
   padding: 10,
+  maxWidth: '720px',
 }
 
 const Modal = React.createClass({
@@ -46,9 +45,11 @@ const Modal = React.createClass({
   render() {
     return (
       <div style={ modalStyle } onClick={ this.overlayClick }>
-        <div ref="content" style={ modalContent }>
+        <ReactCSSTransitionGroup transitionName="modal" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={0}>
+        <div ref="content" key="modalContent" style={ modalContent }>
           { this.props.children }
         </div>
+        </ReactCSSTransitionGroup>
       </div>
     )
   },
@@ -63,6 +64,7 @@ export default class App extends Component {
             <IndexRoute component={NoOp}/>
             <Route path="modal" component={Modal}>
               <Route path="login" component={Login}/>
+              <Route path="pokemark/new" component={NewPokeMark}/>
             </Route>
           </Route>
         </Router>

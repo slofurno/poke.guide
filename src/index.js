@@ -3,8 +3,12 @@ import { render } from 'react-dom'
 import throttle from 'lodash/throttle'
 
 import App from './containers/app'
+import store from 'store'
+import { changeMapFocus, setPokeClient } from 'actions'
 import { pokemon, pokeimgs } from './poke'
+
 const client = PokeClient()
+setPokeClient(client)
 const _pokemarks = {}
 
 const styles = [
@@ -58,6 +62,8 @@ function initMap() {
         x: e.latLng.lng(),
         y: e.latLng.lat(),
       }
+      store.dispatch(changeMapFocus(loc))
+
       client.postMark(loc)
         .then(({id, x, y}) => _pokemarks[id] ||( _pokemarks[id] = createMark({x, y})))
     })

@@ -13,7 +13,7 @@ const menuStyle = {
   width: '100vw',
   top: 0,
   display: 'flex',
-  padding: '10px 0'
+  padding: '10px'
 }
 
 const searchStyle = {
@@ -40,12 +40,15 @@ class Overlay extends Component {
     return (
       <div>
         <div style={menuStyle}>
+          <div onClick={ () => history.push('/modal/pokemark/new') }>
+            <i className="material-icons md-36 md-light">create</i>
+          </div>
           <div style={searchStyle}>
             <i className="material-icons md-36 md-light">search</i>
             <input type="text" placeholder="pokemon"/>
           </div>
-          <div style={endStyle}>
-            <i className="material-icons md-36 md-light" onClick={() => history.push('/modal/login')}>menu</i>
+          <div style={endStyle} onClick={ () => history.push('/modal/login') }>
+            <i className="material-icons md-36 md-light">menu</i>
           </div>
         </div>
 
