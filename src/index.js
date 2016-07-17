@@ -4,6 +4,22 @@ import { pokemon, pokeimgs } from './poke'
 const client = PokeClient()
 const _pokemarks = {}
 
+const styles = [
+  {
+    featureType: "all",
+    stylers: [
+      { saturation: -50 }
+    ]
+  },{
+    featureType: "road.arterial",
+    elementType: "geometry",
+    stylers: [
+      { hue: "#00ffee" },
+      { saturation: 50 }
+    ]
+  },
+]
+
 window.initMap = initMap
 function initMap() {
   navigator.geolocation.getCurrentPosition(function(position) {
@@ -12,6 +28,7 @@ function initMap() {
     const map = new google.maps.Map(document.getElementById('root'), {
       zoom: 12,
       center,
+      styles,
     })
 
     function createMark({x, y}) {
