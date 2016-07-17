@@ -1,6 +1,10 @@
+import throttle from 'lodash/throttle'
+
+import { pokemon, pokeimgs } from './poke'
 const client = PokeClient()
 const _pokemarks = {}
 
+window.initMap = initMap
 function initMap() {
   navigator.geolocation.getCurrentPosition(function(position) {
     const center = {lat: position.coords.latitude, lng: position.coords.longitude}
@@ -18,16 +22,16 @@ function initMap() {
         map: map,
         icon: {
           scaledSize: new google.maps.Size(40, 40),
-          url: `/images/${pn[r]}.png`,
+          url: `/images/${pokeimgs[r]}.png`,
         },
       })
     }
 
-    map.addListener('bounds_changed', function() {
+    map.addListener('bounds_changed', throttle(function() {
       client.getMarks(getRect(map))
         .then(marks => marks.forEach(({account, id, location, time}) =>
           _pokemarks[id] || (_pokemarks[id] = createMark(location))))
-    })
+    }, 500, {leading: false}))
 
     map.addListener('click', function(e) {
       const loc = {
