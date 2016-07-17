@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body,html {
-    background-color: skyblue;
+  html {
     height: 100%;
   }
   html {
@@ -13,6 +12,17 @@
   }
   body {
     margin: 0;
+    min-height: 100vh;
+    background: gainsboro;
+  }
+
+  #map-container {
+    padding-top: 80px;
+    height: 100vh;
+  }
+
+  #map-root {
+    height: 100%
   }
 
   input[type="text"] {
@@ -22,6 +32,7 @@
     color: white;
     font-size: 1.2em;
     padding: 0 0.8em;
+    outline: none;
   }
 
   input[type="text"].light {
@@ -87,11 +98,6 @@
     margin-left: 0;
   }
 
-  #map-root {
-    margin-top: 80px;
-    height: 80vh;
-  }
-
   /* Rules for sizing the icon. */
   .material-icons.md-18 { font-size: 18px; }
   .material-icons.md-24 { font-size: 24px; }
@@ -121,7 +127,9 @@
 <body>
 
   <div id="root"></div>
-  <div id="map-root"></div>
+  <div id="map-container">
+    <div id="map-root"></div>
+  </div>
   <script src="/bundle.js"> </script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUDha6ZFHPibhYm0UKADkuA0d6VgGWSqk&callback=initMap">
